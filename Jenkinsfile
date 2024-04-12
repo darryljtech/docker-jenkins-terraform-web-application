@@ -8,6 +8,11 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/darryljtech/docker-jenkins-terraform-web-application.git'
+            }
+        }
         stage('Initialize Terraform') {
             steps {
                 script {
