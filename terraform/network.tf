@@ -10,7 +10,12 @@ module "vpc" {
   private_subnets  = var.private_subnets
   database_subnets = var.database_subnets
 
-  enable_nat_gateway = true
+  map_public_ip_on_launch = true
+
+  enable_nat_gateway     = true
+  single_nat_gateway     = false
+  one_nat_gateway_per_az = false
+
   enable_vpn_gateway = false
 
   public_subnet_names   = ["web-subnet-1", "web-subnet-2"]
@@ -46,6 +51,16 @@ resource "aws_security_group_rule" "web_ssh" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
+}
+
+resource "aws_security_group_rule" "web_icmp" {
+  security_group_id = aws_security_group.web.id
+
+  type        = "ingress"
+  from_port   = -1
+  to_port     = -1
+  protocol    = "icmp"
   cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
 }
 

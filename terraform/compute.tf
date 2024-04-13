@@ -160,3 +160,22 @@ resource "aws_lb_listener" "app" {
     target_group_arn = aws_lb_target_group.app.arn
   }
 }
+
+resource "aws_cloudwatch_metric_alarm" "this" {
+  alarm_name          = "alb-alarams"
+  alarm_description   = "unhealthy"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 1
+  threshold           = 1
+  period              = 60
+  unit                = "Count"
+  namespace           = "AWS/ApplicationELB"
+  metric_name         = "UnHealthyHostCount"
+  statistic           = "Sum"
+  alarm_actions       = ["arn:aws:sns:eu-west-2:124531745575:alb-alerts"]
+
+  dimensions = {
+    TargetGroup  = aws_lb_target_group.web.arn_suffix
+    LoadBalancer = aws_lb.web.arn_suffix
+  }
+}

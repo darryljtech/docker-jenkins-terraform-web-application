@@ -23,11 +23,12 @@ resource "aws_security_group" "rds" {
 resource "aws_security_group_rule" "rds" {
   security_group_id = aws_security_group.rds.id
 
-  type        = "ingress"
-  from_port   = 3306
-  to_port     = 3306
-  protocol    = "tcp"
-  cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24"]
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  cidr_blocks              = ["10.0.3.0/24", "10.0.4.0/24"]
+  source_security_group_id = aws_security_group.app.id
 }
 
 resource "aws_db_instance" "main" {
