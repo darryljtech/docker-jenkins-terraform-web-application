@@ -70,7 +70,7 @@ resource "aws_security_group_rule" "web_egress_http" {
   type        = "egress"
   from_port   = 80
   to_port     = 80
-  protocol    = "http"
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
 }
 
@@ -80,7 +80,7 @@ resource "aws_security_group_rule" "web_egress_https" {
   type        = "egress"
   from_port   = 443
   to_port     = 443
-  protocol    = "https"
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
 }
 
@@ -106,7 +106,7 @@ resource "aws_security_group_rule" "app_egress_http" {
   type        = "egress"
   from_port   = 80
   to_port     = 80
-  protocol    = "http"
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
 }
 
@@ -116,7 +116,7 @@ resource "aws_security_group_rule" "app_egress_https" {
   type        = "egress"
   from_port   = 443
   to_port     = 443
-  protocol    = "https"
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"] # Replace with your desired CIDR blocks for SSH access
 }
 
