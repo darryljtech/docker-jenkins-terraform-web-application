@@ -57,6 +57,19 @@ pipeline {
                 deleteFile('./terraform/tfplan')
             }
         }
+        success {
+            input "Do you want to destroy the infrastructure? (yes/no)"
+            // Destroy infrastructure if user confirms
+            script {
+                if (input == 'yes') {
+                    dir('./terraform') {
+                        sh 'terraform destroy -auto-approve'
+                    }
+                } else {
+                    echo "Infrastructure will not be destroyed."
+                }
+            }
+        }
     }
 }
 
