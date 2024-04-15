@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "rds" {
   from_port                = 3306
   to_port                  = 3306
   protocol                 = "tcp"
-  cidr_blocks              = ["10.0.3.0/24", "10.0.4.0/24"]
+  cidr_blocks              = ["10.0.5.0/24", "10.0.6.0/24"]
   source_security_group_id = aws_security_group.app.id
 }
 
