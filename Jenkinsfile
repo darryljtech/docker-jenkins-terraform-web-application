@@ -73,6 +73,8 @@ pipeline {
     }
 }
 
+}
+
 // Function to delete a file if it exists
 def deleteFile(filename) {
     sh "rm -f ${filename}"
