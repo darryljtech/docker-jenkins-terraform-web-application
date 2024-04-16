@@ -37,18 +37,18 @@ pipeline {
             }
         }
 
-        stage('Apply Terraform') {
-            steps {
-                script {
-                    // Change to the Terraform directory in the Git repository
-                    dir('./terraform') {
-                        // Apply the Terraform plan
-                        sh 'terraform apply -auto-approve tfplan'
-                    }
-                }
-            }
-        }
-    }
+    //     stage('Apply Terraform') {
+    //         steps {
+    //             script {
+    //                 // Change to the Terraform directory in the Git repository
+    //                 dir('./terraform') {
+    //                     // Apply the Terraform plan
+    //                     sh 'terraform apply -auto-approve tfplan'
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     post {
         always {
